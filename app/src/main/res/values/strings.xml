@@ -1,3 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AdVault</string>
+
+    <!-- Common -->
+    <string name="action_back">Back</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_ok">OK</string>
+    <string name="action_save">Save</string>
+    <string name="action_add">Add</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_search">Search</string>
+    <string name="action_clear_search">Clear search</string>
+    <string name="action_open_diagnostics">Diagnostics</string>
+    <string name="action_open_vpn_settings">Open VPN settings</string>
+    <string name="action_open_settings">Open settings</string>
+    <string name="action_copy">Copy</string>
+    <string name="action_more">More</string>
+    <string name="common_never">Never</string>
+    <string name="common_on">On</string>
+    <string name="common_off">Off</string>
+    <string name="common_yes">Yes</string>
+    <string name="common_no">No</string>
+    <string name="common_unknown">Unknown</string>
+    <string name="common_unknown_app">Unknown app</string>
+    <string name="common_none">None</string>
+
+    <!-- Navigation -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_apps">Apps</string>
+    <string name="nav_activity">Activity</string>
+    <string name="nav_rewards">Rewards</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Protection status -->
+    <string name="status_pill_stopped">Protection off</string>
+    <string name="status_pill_starting">Starting</string>
+    <string name="status_pill_running">Protected</string>
+    <string name="status_pill_waiting">Waiting for network</string>
+    <string name="status_pill_error">Error</string>
+    <string name="status_pill_revoked">VPN disconnected</string>
+    <string name="status_stopped_title">Protection is off</string>
+    <string name="status_stopped_detail">Ads and trackers are not being filtered. Turn on protection to start the local DNS filter.</string>
+    <string name="status_starting_title">Starting protection…</string>
+    <string name="status_starting_detail">Setting up the on-device VPN. Nothing leaves your device.</string>
+    <string name="status_running_title">Protection active</string>
+    <string name="status_running_upstream">DNS resolver: %1$s</string>
+    <string name="status_running_apps">%1$d apps protected · %2$d excluded</string>
+    <string name="status_running_since">Running for %1$s</string>
+    <string name="status_running_ipv6">IPv6 DNS filtered</string>
+    <string name="status_waiting_title">Waiting for network</string>
+    <string name="status_waiting_detail">No network is available. Protection stays armed and resumes automatically when you reconnect.</string>
+    <string name="status_error_title">Protection error</string>
+    <string name="status_error_unknown">Protection stopped because of an unexpected error.</string>
+    <string name="status_error_recoverable">Turn protection on to retry. If it keeps failing, check Diagnostics.</string>
+    <string name="status_error_unrecoverable">AdVault could not recover automatically. Check Diagnostics for details.</string>
+    <string name="status_revoked_title">VPN connection taken over</string>
+    <string name="status_revoked_detail">Another VPN app took over, or VPN permission was revoked. Turn protection on again to reconnect.</string>
+    <string name="status_revoked_explanation">Android allows only one VPN at a time. When another VPN app connects, or VPN permission for AdVault is removed in system settings, AdVault stops filtering. Turn protection on again to reconnect (this will disconnect the other VPN).</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_toggle_label">Protection</string>
+    <string name="dashboard_section_stats">Observed activity</string>
+    <string name="dashboard_section_week">Last 7 days</string>
+    <string name="dashboard_section_quick">Quick actions</string>
+    <string name="dashboard_no_traffic">No traffic observed yet. Statistics appear here once apps make DNS requests while protection is on.</string>
+    <string name="dashboard_action_activity">View activity</string>
+    <string name="dashboard_action_apps">Applications</string>
+    <string name="dashboard_action_blocklists">Blocklists</string>
+    <string name="dashboard_week_empty">No daily data recorded yet.</string>
+    <string name="dashboard_week_blocked">Blocked</string>
+    <string name="dashboard_week_total">All queries</string>
+    <string name="dashboard_week_cd">Last 7 days: %1$d of %2$d DNS queries blocked</string>
+    <string name="dashboard_private_dns_title">Private DNS is on</string>
+    <string name="dashboard_private_dns_body">Android Private DNS is enabled. Apps may resolve names through it and bypass AdVault\'s filter. Set Private DNS to Off or Automatic for reliable blocking.</string>
+    <string name="dashboard_private_dns_body_server">Android Private DNS is set to %1$s. Apps may resolve names through it and bypass AdVault\'s filter. Set Private DNS to Off or Automatic for reliable blocking.</string>
+    <string name="dashboard_private_dns_action">Open Private DNS settings</string>
+    <string name="dashboard_notifications_denied">Notifications are off. Protection still works, but you won\'t see its status notification.</string>
+    <string name="dashboard_consent_denied">VPN permission was not granted, so protection was not started.</string>
+    <string name="stat_ads_blocked">Advertisements blocked</string>
+    <string name="stat_tracking_blocked">Tracking requests blocked</string>
+    <string name="stat_data_saved">Estimated data saved</string>
+    <string name="stat_estimate_tag">ESTIMATE · tap for method</string>
+    <string name="stat_estimate_info_cd">How the estimate is calculated</string>
+    <string name="stat_protected_apps">Protected apps</string>
+    <string name="stat_total_queries">Total DNS queries</string>
+    <string name="stat_blocked_queries">Blocked queries</string>
+    <string name="stat_last_blocklist_update">Last blocklist update</string>
+    <string name="dialog_estimate_title">About estimated data saved</string>
+    <string name="dialog_estimate_body">This number is an estimate, not a measurement. AdVault blocks requests at the DNS level, so the ad content is never downloaded and its real size is unknown.\n\nEstimate = blocked advertising and tracking requests × %1$s (the average payload configured in Settings › Data management).\n\nAll other statistics are counted from real DNS queries on this device.</string>
+    <string name="dialog_other_vpn_title">Another VPN is active</string>
+    <string name="dialog_other_vpn_body">Android allows only one VPN connection at a time. Starting AdVault will disconnect the VPN that is currently active.\n\nAdVault never disconnects another VPN without asking you first.</string>
+    <string name="dialog_other_vpn_always_on">The other app is set as Always-on VPN. Android may reconnect it and stop AdVault. Turn off Always-on for that app in VPN settings first.</string>
+    <string name="dialog_other_vpn_confirm">Start AdVault</string>
+    <string name="dialog_other_vpn_keep">Keep current VPN</string>
 </resources>

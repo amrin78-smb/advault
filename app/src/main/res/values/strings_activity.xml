@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_title">Activity</string>
+    <string name="activity_clear">Clear history</string>
+    <string name="activity_clear_title">Clear activity history?</string>
+    <string name="activity_clear_body">This permanently deletes every logged DNS query on this device. Statistics on the dashboard are kept.</string>
+    <string name="activity_cleared">Activity history cleared</string>
+    <string name="activity_filter_all_apps">All apps</string>
+    <string name="activity_filter_all_providers">All providers</string>
+    <string name="activity_filter_blocked_only">Blocked only</string>
+    <string name="activity_clear_filters">Clear filters</string>
+    <string name="activity_logging_off_banner">Activity logging is off. Existing entries are shown, but new queries are not recorded.</string>
+    <string name="activity_logging_off_title">Activity logging is off</string>
+    <string name="activity_logging_off_body">AdVault is not recording individual DNS queries. You can turn activity logging on in Settings › Data management. Logs stay on this device.</string>
+    <string name="activity_no_match_title">No matching activity</string>
+    <string name="activity_no_match_body">No logged queries match the selected filters.</string>
+    <string name="activity_empty_title">No activity yet</string>
+    <string name="activity_empty_body">DNS queries filtered by AdVault will appear here. Entries are kept on this device for %1$d days.</string>
+    <string name="activity_footer">Showing up to %1$d most recent entries. Logs are kept on this device for %2$d days.</string>
+    <string name="activity_blocked">Blocked</string>
+    <string name="activity_allowed">Allowed</string>
+    <string name="activity_cached">cached</string>
+</resources>
