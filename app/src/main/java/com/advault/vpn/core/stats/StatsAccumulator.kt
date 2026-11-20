@@ -81,6 +81,7 @@ class StatsAccumulator(private val maxPendingLogs: Int = 5_000) {
         for (d in batch.daily) {
             val c = daily.getOrPut(d.day to d.packageName) { Counter() }
             c.total += d.total; c.blocked += d.blocked; c.ads += d.ads; c.tracking += d.tracking; c.bytes += d.bytes
+            events += d.total.toInt()
         }
         for (entry in batch.logs.asReversed()) {
             if (logs.size >= maxPendingLogs) { droppedLogs++; continue }
