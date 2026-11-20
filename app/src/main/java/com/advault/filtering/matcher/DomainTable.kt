@@ -3,32 +3,33 @@ package com.advault.filtering.matcher
 /**
  * Immutable open-addressing hash table: 64-bit domain hash -> 64-bit value (OR-merged bit set).
  *
- * Two parallel primitive arrays, linear probing, power-of-two capacity, load factor <= 0.6.
+ * One interleaved primitive array, linear probing, power-of-two capacity, load factor <= 0.6.
  * Memory: 16 bytes per slot (no per-entry objects, no strings retained). A value of 0 means "absent",
  * so every stored value must be non-zero.
  *
  * Reads are lock-free and safe from any thread once the table has been published (all fields final).
  */
 class DomainTable private constructor(
-    private val keys: LongArray,
-    private val values: LongArray,
+    /** Interleaved slots: [2i] = key (0 = empty), [2i + 1] = value. One cache line serves both. */
+    private val slots: LongArray,
     /** Number of distinct keys. */
     val size: Int,
 ) {
-    private val mask = keys.size - 1
+    private val mask = (slots.size ushr 1) - 1
 
-    val capacity: Int get() = keys.size
+    val capacity: Int get() = slots.size ushr 1
 
-    /** Bytes held by the backing arrays (excluding the small object headers). */
-    val memoryBytes: Long get() = keys.size.toLong() * 16L
+    /** Bytes held by the backing array (excluding the small object header). */
+    val memoryBytes: Long get() = slots.size.toLong() * 8L
 
     /** Returns the value stored for [key], or 0 if absent. */
     fun get(key: Long): Long {
         if (size == 0) return 0L
+        val s = slots
         var i = (key xor (key ushr 31)).toInt() and mask
         while (true) {
-            val k = keys[i]
-            if (k == key) return values[i]
+            val k = s[i shl 1]
+            if (k == key) return s[(i shl 1) + 1]
             if (k == 0L) return 0L
             i = (i + 1) and mask
         }
@@ -41,18 +42,16 @@ class DomainTable private constructor(
         }
     }
 
-    @PublishedApi internal fun valueAt(i: Int): Long = if (keys[i] != 0L) values[i] else 0L
+    @PublishedApi internal fun valueAt(i: Int): Long = if (slots[i shl 1] != 0L) slots[(i shl 1) + 1] else 0L
 
     class Builder(expected: Int = 16) {
-        private var keys: LongArray
-        private var values: LongArray
+        private var slots: LongArray
         private var size = 0
         private var threshold: Int
 
         init {
             val cap = capacityFor(expected)
-            keys = LongArray(cap)
-            values = LongArray(cap)
+            slots = LongArray(cap * 2)
             threshold = (cap * LOAD_FACTOR).toInt()
         }
 
@@ -62,45 +61,36 @@ class DomainTable private constructor(
         fun put(key: Long, bits: Long): Boolean {
             require(key != 0L && bits != 0L)
             if (size >= threshold) grow()
-            val isNew = insert(keys, values, key, bits)
+            val isNew = insert(slots, key, bits)
             if (isNew) size++
             return isNew
         }
 
-        fun get(key: Long): Long {
-            val mask = keys.size - 1
-            var i = (key xor (key ushr 31)).toInt() and mask
-            while (true) {
-                val k = keys[i]
-                if (k == key) return values[i]
-                if (k == 0L) return 0L
-                i = (i + 1) and mask
+        private fun grow() {
+            val old = slots
+            val cap = old.size // new capacity = 2x old capacity (old.size == 2 * oldCap)
+            check(cap > 0 && cap < (1 shl 29)) { "DomainTable capacity overflow" }
+            slots = LongArray(cap * 2)
+            threshold = (cap * LOAD_FACTOR).toInt()
+            var i = 0
+            while (i < old.size) {
+                if (old[i] != 0L) insert(slots, old[i], old[i + 1])
+                i += 2
             }
         }
 
-        private fun grow() {
-            val oldK = keys
-            val oldV = values
-            val cap = oldK.size * 2
-            check(cap > 0) { "DomainTable capacity overflow" }
-            keys = LongArray(cap)
-            values = LongArray(cap)
-            threshold = (cap * LOAD_FACTOR).toInt()
-            for (i in oldK.indices) if (oldK[i] != 0L) insert(keys, values, oldK[i], oldV[i])
-        }
+        fun build(): DomainTable = if (size == 0) EMPTY else DomainTable(slots, size)
 
-        fun build(): DomainTable = if (size == 0) EMPTY else DomainTable(keys, values, size)
-
-        private fun insert(keys: LongArray, values: LongArray, key: Long, bits: Long): Boolean {
-            val mask = keys.size - 1
+        private fun insert(s: LongArray, key: Long, bits: Long): Boolean {
+            val mask = (s.size ushr 1) - 1
             var i = (key xor (key ushr 31)).toInt() and mask
             while (true) {
-                val k = keys[i]
+                val k = s[i shl 1]
                 if (k == 0L) {
-                    keys[i] = key; values[i] = bits; return true
+                    s[i shl 1] = key; s[(i shl 1) + 1] = bits; return true
                 }
                 if (k == key) {
-                    values[i] = values[i] or bits; return false
+                    s[(i shl 1) + 1] = s[(i shl 1) + 1] or bits; return false
                 }
                 i = (i + 1) and mask
             }
@@ -109,7 +99,7 @@ class DomainTable private constructor(
 
     companion object {
         const val LOAD_FACTOR = 0.6
-        val EMPTY = DomainTable(LongArray(1), LongArray(1), 0)
+        val EMPTY = DomainTable(LongArray(2), 0)
 
         fun capacityFor(expected: Int): Int {
             val needed = (expected / LOAD_FACTOR).toLong() + 1

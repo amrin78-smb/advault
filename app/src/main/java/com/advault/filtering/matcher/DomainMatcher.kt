@@ -28,7 +28,8 @@ class DomainMatcher(
     val memoryBytes: Long get() = suffix.memoryBytes + subdomains.memoryBytes + exact.memoryBytes
 
     /**
-     * Invokes [block] for every matching rule from the most specific suffix to the least specific.
+     * Invokes [block] for every matching rule, from the LEAST specific suffix ("example.com") to the
+     * most specific ("a.b.example.com") because the walk runs right to left.
      * [block] receives the start index of the matched suffix in [domain], the rule kind and its value,
      * and returns false to stop. Inlined: the lambda never allocates.
      */
@@ -69,7 +70,7 @@ class DomainMatcher(
     /** Most specific match, packed as `(start shl 2) or kind`, or -1 if none. */
     fun firstMatch(domain: String): Int {
         var r = -1
-        forEachMatch(domain) { start, kind, _ -> r = (start shl 2) or kind; false }
+        forEachMatch(domain) { start, kind, _ -> r = (start shl 2) or kind; true }
         return r
     }
 
@@ -77,7 +78,8 @@ class DomainMatcher(
     fun firstMatchFor(domain: String, bits: Long): Int {
         var r = -1
         forEachMatch(domain) { start, kind, v ->
-            if (v and bits != 0L) { r = (start shl 2) or kind; false } else true
+            if (v and bits != 0L) r = (start shl 2) or kind
+            true
         }
         return r
     }

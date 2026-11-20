@@ -18,6 +18,7 @@ data class FilterSource(val id: String, val category: FilterCategory)
  *  2. custom BLOCK              -> BLOCKED  / CUSTOM_BLOCK
  *  3. no list/provider match    -> ALLOWED  / NO_MATCH
  *  4. built-in allow exception  -> ALLOWED  / NO_MATCH (listId = [BUILTIN_ALLOW_ID], matchedRule = exception)
+ *     (a domain classified ANALYTICS or TELEMETRY is not additionally judged as ADVERTISING/TRACKING)
  *  5. a matched category enabled in settings AND included by mode -> BLOCKED / BLOCKLIST
  *  6. matched category enabled but excluded by mode -> ALLOWED / MODE_EXCLUDES_CATEGORY
  *  7. otherwise (all matched categories disabled)   -> ALLOWED / CATEGORY_DISABLED
@@ -34,6 +35,8 @@ class FilterSnapshot(
     private val categorySources = LongArray(CATEGORY_COUNT).also { arr ->
         sources.forEachIndexed { bit, s -> arr[s.category.ordinal] = arr[s.category.ordinal] or (1L shl bit) }
     }
+    private val refinedSources = categorySources[FilterCategory.ANALYTICS.ordinal] or categorySources[FilterCategory.TELEMETRY.ordinal]
+    private val genericSources = categorySources[FilterCategory.ADVERTISING.ordinal] or categorySources[FilterCategory.TRACKING.ordinal]
     private val sourceIds: Array<String> = sources.map { it.id }.toTypedArray()
 
     val totalDomains: Int get() = lists.size
@@ -47,8 +50,11 @@ class FilterSnapshot(
             val m = customBlock.firstMatch(domain)
             if (m >= 0) return FilterVerdict(true, DecisionReason.CUSTOM_BLOCK, matchedRule = DomainMatcher.ruleText(domain, m))
         }
-        val mask = lists.unionMask(domain)
+        var mask = lists.unionMask(domain)
         if (mask == 0L) return NO_MATCH
+        // Precise ANALYTICS/TELEMETRY classification overrides the generic ADVERTISING/TRACKING lists
+        // (which also contain many analytics hosts), so those categories stay independently switchable.
+        if (mask and refinedSources != 0L) mask = mask and genericSources.inv()
         if (!builtinAllow.isEmpty) {
             val a = builtinAllow.firstMatch(domain)
             if (a >= 0) {
@@ -74,20 +80,18 @@ class FilterSnapshot(
 
     private fun verdict(domain: String, mask: Long, category: Int, blocked: Boolean, reason: DecisionReason): FilterVerdict {
         val bits = mask and categorySources[category]
-        val packed = lists.firstMatchFor(domain, bits)
-        var rule: String? = null
-        var listId: String? = null
-        if (packed >= 0) {
-            rule = DomainMatcher.ruleText(domain, packed)
-            // Attribute to the lowest-numbered source in this category whose rule matched at that level.
-            var b = 0L
-            lists.forEachMatch(domain) { start, kind, v ->
-                if ((start shl 2) or kind == packed) { b = v and bits; false } else true
-            }
-            if (b == 0L) b = bits
-            listId = sourceIds[java.lang.Long.numberOfTrailingZeros(b)]
+        // Single walk: remember the most specific rule (last visited) belonging to this category.
+        var packed = -1
+        var matchedBits = 0L
+        lists.forEachMatch(domain) { start, kind, v ->
+            val b = v and bits
+            if (b != 0L) { packed = (start shl 2) or kind; matchedBits = b }
+            true
         }
-        return FilterVerdict(blocked, reason, CATEGORIES[category], rule, listId)
+        if (packed < 0) return FilterVerdict(blocked, reason, CATEGORIES[category])
+        // Attribute to the lowest-numbered source in this category whose rule matched at that level.
+        val listId = sourceIds[java.lang.Long.numberOfTrailingZeros(matchedBits)]
+        return FilterVerdict(blocked, reason, CATEGORIES[category], DomainMatcher.ruleText(domain, packed), listId)
     }
 
     companion object {
