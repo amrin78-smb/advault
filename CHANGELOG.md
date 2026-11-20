@@ -14,7 +14,7 @@ First public build. Covers the planned v0.1–v0.8 milestones in one release; ph
 - Provider intelligence database (29 providers) with SDK detection in installed apps, OTA updates.
 - Reward Assistant with honest per-game explanations and Block-all / Allow-rewarded behaviour.
 - Dashboard, Apps, Activity, Rewards, Blocklists, Custom rules, Settings, Diagnostics, About, onboarding.
-- 187 unit tests, 8 instrumented UI tests, GitHub Actions CI.
+- 187 unit tests, 8 instrumented UI tests, CI workflow (see `ci/README.md` to enable).
 
 ### Fixed during integration testing
 - Protection silently stayed off after Android killed the process.
