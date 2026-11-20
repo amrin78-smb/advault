@@ -1,0 +1,56 @@
+# AdVault curated list: mobile & game advertising networks (category GAME_ADS)
+# Licence: CC0 1.0. Entries match the domain and all subdomains.
+# Only ad-serving endpoints are listed. Never add shared CDNs or SDK hosts that games need to run
+# (e.g. unity3d.com, cdn.unity3d.com). See builtin_allow.txt and FilterAccidentalBlockingTest.
+# Unity Ads
+unityads.unity3d.com
+unityads.unitychina.cn
+# AppLovin / MAX
+applovin.com
+applvn.com
+# ironSource / Unity LevelPlay
+supersonicads.com
+ironsrc.mobi
+# Vungle / Liftoff
+vungle.com
+liftoff.io
+# Chartboost
+chartboost.com
+# AdColony / Digital Turbine
+adcolony.com
+# MoPub (legacy SDKs)
+mopub.com
+# InMobi
+inmobi.com
+# Fyber / Inneractive
+inner-active.mobi
+# Tapjoy
+tapjoyads.com
+# Mintegral
+rayjump.com
+mintegral.net
+# Pangle (ByteDance)
+pangle.io
+pangolin-sdk-toutiao.com
+# Google AdMob ad serving (not admob.com console)
+googleads.g.doubleclick.net
+pagead2.googlesyndication.com
+googlesyndication.com
+googleadservices.com
+# Meta Audience Network (graph.facebook.com is shared and is NOT listed)
+an.facebook.com
+# Amazon Publisher Services
+amazon-adsystem.com
+# Smaato
+smaato.net
+# Start.io
+startappservice.com
+# Yandex mobile ads
+an.yandex.ru
+yandexadexchange.net
+# BidMachine
+bidmachine.io
+# Verve / PubNative
+pubnative.net
+# MobFox
+mobfox.com
