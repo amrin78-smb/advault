@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_done">Get started</string>
+    <string name="onboarding_1_title">Fewer ads, everywhere</string>
+    <string name="onboarding_1_body">AdVault blocks advertising and tracking domains for all your apps and games, at the DNS level.</string>
+    <string name="onboarding_1_body2">Turn on protection once and play without most interstitial, banner and video ads.</string>
+    <string name="onboarding_2_title">A VPN that stays on your phone</string>
+    <string name="onboarding_2_body">Android will ask you to allow a VPN connection. AdVault uses it only to see DNS lookups on this device — there is no remote server and nothing leaves your device through AdVault.</string>
+    <string name="onboarding_2_body2">No HTTPS interception, no certificates, no tracking. Logs stay local and can be cleared any time.</string>
+    <string name="onboarding_3_title">Honest about limits</string>
+    <string name="onboarding_3_body">Some ads come from the same servers as the content and cannot be blocked by DNS.</string>
+    <string name="onboarding_3_body2">Rewarded ads can\'t be faked: blocking them usually means their rewards are unavailable. You can allow them per game in the Reward Assistant.</string>
+    <string name="onboarding_3_body3">Only one VPN can run at a time, and Android Private DNS can bypass filtering.</string>
+</resources>
