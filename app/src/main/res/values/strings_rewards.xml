@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rewards_title">Reward Assistant</string>
+    <string name="rewards_honesty_title">How rewarded ads really work</string>
+    <string name="rewards_honesty_1">Rewards (extra lives, coins, bonuses) are granted by the game developer, not by AdVault.</string>
+    <string name="rewards_honesty_2">AdVault cannot fake, skip or complete a rewarded ad, and never will. Many games verify the ad view with the ad network\'s server.</string>
+    <string name="rewards_honesty_3">Blocking ads usually makes rewarded ads unavailable, so rewards that depend on them cannot be earned.</string>
+    <string name="rewards_honesty_4">Choosing “Allow rewarded ads” excludes the game from AdVault so you can decide to watch them. Other ads in that game will show too.</string>
+    <string name="rewards_section_games">Games</string>
+    <string name="rewards_no_games_title">No games detected</string>
+    <string name="rewards_no_games_body">Installed games with advertising SDKs or observed ad traffic will appear here.</string>
+    <string name="rewards_current_behaviour">Behaviour: %1$s</string>
+    <string name="rewards_expand">Show details</string>
+    <string name="rewards_collapse">Hide details</string>
+    <string name="rewards_detected_sdks">Detected advertising SDKs</string>
+    <string name="rewards_none_detected">None detected</string>
+    <string name="rewards_observed">Observed advertising activity</string>
+    <string name="rewards_none_observed">No advertising traffic observed yet.</string>
+    <string name="rewards_observed_line">%1$s requests · %2$s blocked · last seen %3$s</string>
+    <string name="rewards_associated_with">Domains associated with: %1$s (classification only — not proof an ad was shown)</string>
+    <string name="rewards_compatibility">Compatibility notes</string>
+    <string name="rewards_requires_verified">Reward requires a verified ad view: %1$s</string>
+    <string name="rewards_cannot_manufacture">This game requires a genuine, verified rewarded-ad completion. AdVault cannot manufacture that event. To earn this reward, allow rewarded ads for the game.</string>
+    <string name="rewards_alternatives">Legitimate ad-free alternatives</string>
+    <string name="rewards_known_issues">Known issues when blocking</string>
+    <string name="rewards_last_verified">Compatibility information last verified %1$s</string>
+    <string name="rewards_behaviour">AdVault behaviour for this game</string>
+    <string name="rewards_behaviour_set">%1$s: %2$s</string>
+    <string name="rewards_section_providers">Supported advertising providers</string>
+    <string name="rewards_db_not_loaded">The provider database is not loaded yet.</string>
+    <string name="rewards_db_version">Database version</string>
+    <string name="rewards_db_updated_at">Updated</string>
+    <string name="rewards_db_source">Source</string>
+    <string name="rewards_db_counts">Contents</string>
+    <string name="rewards_db_counts_value">%1$d providers · %2$d domains</string>
+    <string name="rewards_db_update">Update provider database</string>
+    <string name="rewards_db_updated">Provider database updated to %1$s (%2$d providers)</string>
+    <string name="rewards_db_update_failed">Provider database update failed: %1$s</string>
+    <string name="rewards_no_providers">No providers available.</string>
+    <string name="rewards_provider_summary">%1$d domains · updated %2$s</string>
+    <string name="rewards_provider_ssv">server-side reward verification</string>
+
+    <string name="provider_title">Provider</string>
+    <string name="provider_missing_title">Provider not found</string>
+    <string name="provider_section_info">Details</string>
+    <string name="provider_id">Identifier</string>
+    <string name="provider_last_updated">Last updated</string>
+    <string name="provider_ssv">Server-side reward verification</string>
+    <string name="provider_ssv_explain">This network can confirm rewarded-ad completions on the game\'s server. Games using it only grant rewards after a genuine, verified view.</string>
+    <string name="provider_section_sdk">SDK signatures</string>
+    <string name="provider_section_domains">Domains (%1$d)</string>
+    <string name="provider_formats_note">Ad formats listed are associations from the provider database, used for classification only.</string>
+</resources>

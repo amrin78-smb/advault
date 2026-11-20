@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apps_title">Applications</string>
+    <string name="apps_sort">Sort</string>
+    <string name="apps_sort_name">Name</string>
+    <string name="apps_sort_blocked">Most blocked</string>
+    <string name="apps_sort_queries">Most queries</string>
+    <string name="apps_search_hint">Search apps or packages</string>
+    <string name="apps_filter_all">All</string>
+    <string name="apps_filter_user">User apps</string>
+    <string name="apps_filter_games">Games</string>
+    <string name="apps_filter_excluded">Excluded</string>
+    <string name="apps_filter_excluded_count">Excluded (%1$d)</string>
+    <string name="apps_filter_system">Show system apps</string>
+    <string name="apps_explainer">Excluded apps bypass AdVault entirely: their traffic never enters the local VPN, so nothing is filtered or logged for them. Changing an exclusion briefly reconnects the VPN.</string>
+    <string name="apps_explainer_dismiss">Got it</string>
+    <string name="apps_empty_title">No applications found</string>
+    <string name="apps_empty_body">The installed application list is not available yet.</string>
+    <string name="apps_no_match_title">No matching apps</string>
+    <string name="apps_no_match_body">Try a different search or filter. System apps are hidden unless “Show system apps” is selected.</string>
+    <string name="apps_count">%1$d apps</string>
+    <string name="apps_protection_default">Protected · default (%1$s)</string>
+    <string name="apps_protection_aggressive">Protected · aggressive</string>
+    <string name="apps_protection_balanced">Protected · balanced</string>
+    <string name="apps_protection_excluded">Excluded</string>
+    <string name="apps_badge_game">Game</string>
+    <string name="apps_badge_system">System</string>
+    <string name="apps_no_queries">No DNS queries observed</string>
+    <string name="apps_query_counts">%1$s queries · %2$s blocked</string>
+    <string name="apps_toggle_protect_cd">Protect %1$s</string>
+    <string name="apps_toggle_exclude_cd">Exclude %1$s from protection</string>
+    <string name="apps_reconnecting">Reconnecting the VPN to apply the new app routing…</string>
+
+    <string name="app_detail_title">Application</string>
+    <string name="app_detail_missing_title">App not found</string>
+    <string name="app_detail_missing_body">%1$s is not installed or is not visible to AdVault.</string>
+    <string name="app_detail_section_stats">Observed traffic</string>
+    <string name="app_detail_dns_bytes">DNS traffic (measured)</string>
+    <string name="app_detail_section_protection">Protection</string>
+    <string name="app_detail_exclusion_note">Excluding an app removes it from the VPN completely so it always uses the normal network. Switching between excluded and protected briefly reconnects the VPN.</string>
+    <string name="app_detail_section_sdks">Detected advertising SDKs</string>
+    <string name="app_detail_no_sdks">No known advertising SDK was detected in this app\'s declared components.</string>
+    <string name="app_detail_sdk_note">Detected from the app\'s declared components. Presence of an SDK does not mean ads are currently shown.</string>
+    <string name="app_detail_section_activity">Recent activity</string>
+    <string name="app_detail_open_activity">View all activity</string>
+    <string name="app_detail_no_activity_title">No activity recorded</string>
+    <string name="app_detail_no_activity_body">No DNS queries from this app were logged. Activity appears when the app is used while protection and activity logging are on.</string>
+    <string name="protection_desc_default">Uses the global default filter mode from Settings.</string>
+    <string name="protection_desc_aggressive">Blocks advertising, game ads, malicious domains, tracking, analytics and telemetry (for enabled categories).</string>
+    <string name="protection_desc_balanced">Blocks advertising, game ads and malicious domains only. Analytics and telemetry are allowed.</string>
+    <string name="protection_desc_excluded">Bypasses AdVault entirely. Nothing is filtered or logged for this app.</string>
+</resources>
