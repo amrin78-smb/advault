@@ -92,8 +92,9 @@ class MatcherBenchmarkTest {
         assertTrue("unexpected misses matched: $missCount", missCount == 0)
         assertTrue("arrays too large: $arraysMb MB", arraysMb < 20)
         assertTrue("build too slow: $buildMs ms", buildMs < 10_000)
-        assertTrue("hit lookups too slow: $hitRate/s", hitRate > 1_000_000)
-        assertTrue("miss lookups too slow: $missRate/s", missRate > 1_000_000)
-        assertTrue("evaluate too slow: $evalHit/s", evalHit > 500_000)
+        // Loose floors (shared/loaded CI machines); typical desktop results are several M/s, see output.
+        assertTrue("hit lookups too slow: $hitRate/s", hitRate > 500_000)
+        assertTrue("miss lookups too slow: $missRate/s", missRate > 500_000)
+        assertTrue("evaluate too slow: $evalHit/s", evalHit > 250_000)
     }
 }

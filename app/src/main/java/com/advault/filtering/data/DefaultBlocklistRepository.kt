@@ -23,7 +23,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
@@ -55,6 +54,8 @@ class DefaultBlocklistRepository @Inject constructor(
     private val updateMutex = Mutex()
     private val initMutex = Mutex()
     private val scheduleWatcherStarted = AtomicBoolean(false)
+    private val scheduleLock = Any()
+    @Volatile private var lastAppliedSchedule: UpdateSchedule? = null
     private val providerWatcherStarted = AtomicBoolean(false)
     private val _updateState = MutableStateFlow<BlocklistUpdateState>(BlocklistUpdateState.Idle)
 
@@ -293,9 +294,20 @@ class DefaultBlocklistRepository @Inject constructor(
     // ------------------------------------------------------------------ scheduling
 
     override suspend fun applyUpdateSchedule() {
-        scheduler.apply(settings.updateSchedule.first())
+        val schedule = settings.updateSchedule.first()
+        synchronized(scheduleLock) {
+            lastAppliedSchedule = schedule
+            scheduler.apply(schedule)
+        }
         if (scheduleWatcherStarted.compareAndSet(false, true)) {
-            scope.launch { settings.updateSchedule.drop(1).collect { scheduler.apply(it) } }
+            // Re-apply whenever the user changes frequency / Wi-Fi-only in settings.
+            scope.launch {
+                settings.updateSchedule.collect {
+                    synchronized(scheduleLock) {
+                        if (it != lastAppliedSchedule) { lastAppliedSchedule = it; scheduler.apply(it) }
+                    }
+                }
+            }
         }
     }
 

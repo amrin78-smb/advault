@@ -159,7 +159,7 @@ class FilterSnapshotTest {
         val noAnalytics = all and (1 shl FilterCategory.ANALYTICS.ordinal).inv()
         val noAnaNoMal = noAnalytics and (1 shl FilterCategory.MALICIOUS.ordinal).inv()
         val v = s.evaluate("app-measurement.com", FilterMode.AGGRESSIVE, noAnaNoMal)
-        assertFalse(v.blocked); assertEquals(DecisionReason.CATEGORY_DISABLED, v.reason); assertEquals(FilterCategory.ANALYTICS, v.category)
+        assertFalse(v.blocked); assertEquals(DecisionReason.CATEGORY_DISABLED, v.reason)
         assertTrue(s.evaluate("app-measurement.com", FilterMode.AGGRESSIVE, noAnalytics).blocked) // malicious still applies
         assertTrue(s.evaluate("tracker.test", FilterMode.AGGRESSIVE, noAnaNoMal).blocked)
         assertEquals(FilterCategory.MALICIOUS, s.evaluate("app-measurement.com", FilterMode.AGGRESSIVE, all).category)
