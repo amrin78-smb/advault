@@ -12,7 +12,7 @@ data class BuiltInList(
     val url: String?,
     val category: FilterCategory,
     val format: BlocklistFormat,
-    /** File name inside assets/blocklists/. ".gz" files are decompressed transparently. */
+    /** File name inside assets/blocklists/. gzip content is detected by magic bytes. Do NOT use a ".gz" extension: AGP gunzips and renames such assets in the APK. */
     val asset: String,
     val attribution: String,
     val enabledByDefault: Boolean = true,
@@ -53,7 +53,7 @@ object BuiltInLists {
             url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
             category = FilterCategory.ADVERTISING,
             format = BlocklistFormat.HOSTS,
-            asset = "stevenblack-unified.txt.gz",
+            asset = "stevenblack-unified.txt.gzip",
             attribution = "Steven Black and contributors, https://github.com/StevenBlack/hosts — MIT License. " +
                 "Aggregates AdAway (CC BY 3.0), add.2o7Net, add.Risk, add.Spam, Dan Pollock, URLHaus, " +
                 "Peter Lowe and others under their respective terms.",
@@ -64,7 +64,7 @@ object BuiltInLists {
             url = "https://adaway.org/hosts.txt",
             category = FilterCategory.ADVERTISING,
             format = BlocklistFormat.HOSTS,
-            asset = "adaway.txt.gz",
+            asset = "adaway.txt.gzip",
             attribution = "AdAway, https://github.com/AdAway/adaway.github.io — CC Attribution 3.0.",
         ),
         BuiltInList(
@@ -91,7 +91,7 @@ object BuiltInLists {
             url = "https://raw.githubusercontent.com/badmojr/1Hosts/master/Lite/domains.txt",
             category = FilterCategory.TRACKING,
             format = BlocklistFormat.DOMAINS,
-            asset = "1hosts-lite.txt.gz",
+            asset = "1hosts-lite.txt.gzip",
             attribution = "badmojr/1Hosts, https://github.com/badmojr/1Hosts — Mozilla Public License 2.0.",
         ),
         BuiltInList(
@@ -100,7 +100,7 @@ object BuiltInLists {
             url = "https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt",
             category = FilterCategory.TRACKING,
             format = BlocklistFormat.HOSTS,
-            asset = "frogeye-firstparty.txt.gz",
+            asset = "frogeye-firstparty.txt.gzip",
             attribution = "Geoffrey 'Frogeye' Preud'homme, https://hostfiles.frogeye.fr — MIT License.",
         ),
         BuiltInList(
@@ -109,7 +109,7 @@ object BuiltInLists {
             url = "https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/android-tracking.txt",
             category = FilterCategory.TRACKING,
             format = BlocklistFormat.DOMAINS,
-            asset = "perflyst-android.txt.gz",
+            asset = "perflyst-android.txt.gzip",
             attribution = "Perflyst/PiHoleBlocklist, https://github.com/Perflyst/PiHoleBlocklist — MIT License.",
         ),
         BuiltInList(
@@ -136,7 +136,7 @@ object BuiltInLists {
             url = "https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-hosts.txt",
             category = FilterCategory.MALICIOUS,
             format = BlocklistFormat.HOSTS,
-            asset = "urlhaus-filter.txt.gz",
+            asset = "urlhaus-filter.txt.gzip",
             attribution = "malware-filter/urlhaus-filter, https://gitlab.com/malware-filter/urlhaus-filter — " +
                 "CC0 1.0 / MIT; URLhaus data by abuse.ch — CC0 1.0.",
         ),
@@ -146,7 +146,7 @@ object BuiltInLists {
             url = "https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt",
             category = FilterCategory.MALICIOUS,
             format = BlocklistFormat.HOSTS,
-            asset = "phishing-filter.txt.gz",
+            asset = "phishing-filter.txt.gzip",
             attribution = "malware-filter/phishing-filter, https://gitlab.com/malware-filter/phishing-filter — " +
                 "filters CC BY-SA 4.0; sources OpenPhish, PhishTank (free of charge), IPThreat (CC BY-SA 4.0).",
         ),

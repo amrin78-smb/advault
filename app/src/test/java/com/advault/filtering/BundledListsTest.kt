@@ -156,6 +156,8 @@ class BundledListsTest {
             assertTrue(it.attribution.isNotBlank())
             assertTrue(it.url == null || it.url!!.startsWith("https://"))
             assertTrue(File(assetDir, it.asset).isFile)
+            // AGP gunzips and renames ".gz" assets when packaging, which would break AssetManager.open().
+            assertFalse("${it.asset}: do not use a .gz extension", it.asset.endsWith(".gz"))
         }
         assertEquals(BuiltInLists.all.size, BuiltInLists.all.map { it.id }.toSet().size)
     }

@@ -1,6 +1,6 @@
 # Bundled blocklist snapshots
 
-Snapshots downloaded over HTTPS on 2026-11-20 and stored unmodified (gzip -9n) so they can be
+Snapshots downloaded over HTTPS on 2026-11-20 and stored unmodified (gzip -9n, extension `.gzip` because AGP gunzips and renames `.gz` assets when packaging) so they can be
 re-verified against upstream. On first run (and when a newer snapshot ships with an app update)
 AdVault parses them with the same validating parser used for downloaded updates
 (`com.advault.filtering.parser.BlocklistParser`) and stores the compiled domain list under
@@ -11,17 +11,17 @@ Downloaded content is only ever parsed as text and validated as hostnames; nothi
 
 | id | File | Category | Upstream (HTTPS update URL) | Licence | Valid domains |
 |----|------|----------|-----------------------------|---------|---------------|
-| stevenblack-unified | stevenblack-unified.txt.gz | ADVERTISING | https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | MIT (aggregates AdAway CC BY 3.0, add.2o7Net, add.Risk, add.Spam, Dan Pollock, URLHaus, Peter Lowe et al. under their terms) | 76,104 |
-| adaway | adaway.txt.gz | ADVERTISING | https://adaway.org/hosts.txt | CC Attribution 3.0 | 6,540 |
+| stevenblack-unified | stevenblack-unified.txt.gzip | ADVERTISING | https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts | MIT (aggregates AdAway CC BY 3.0, add.2o7Net, add.Risk, add.Spam, Dan Pollock, URLHaus, Peter Lowe et al. under their terms) | 76,104 |
+| adaway | adaway.txt.gzip | ADVERTISING | https://adaway.org/hosts.txt | CC Attribution 3.0 | 6,540 |
 | advault-mobile-ads | advault-mobile-ads.txt | GAME_ADS | — (curated, ships with app) | CC0 1.0 | 31 |
 | advault-attribution | advault-attribution.txt | TRACKING | — (curated) | CC0 1.0 | 12 |
-| 1hosts-lite | 1hosts-lite.txt.gz | TRACKING | https://raw.githubusercontent.com/badmojr/1Hosts/master/Lite/domains.txt | MPL 2.0 | 202,953 |
-| frogeye-firstparty | frogeye-firstparty.txt.gz | TRACKING | https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt | MIT | 15,012 |
-| perflyst-android | perflyst-android.txt.gz | TRACKING | https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/android-tracking.txt | MIT | 80 |
+| 1hosts-lite | 1hosts-lite.txt.gzip | TRACKING | https://raw.githubusercontent.com/badmojr/1Hosts/master/Lite/domains.txt | MPL 2.0 | 202,953 |
+| frogeye-firstparty | frogeye-firstparty.txt.gzip | TRACKING | https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt | MIT | 15,012 |
+| perflyst-android | perflyst-android.txt.gzip | TRACKING | https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/android-tracking.txt | MIT | 80 |
 | advault-analytics | advault-analytics.txt | ANALYTICS | — (curated) | CC0 1.0 | 26 |
 | advault-telemetry | advault-telemetry.txt | TELEMETRY | — (curated) | CC0 1.0 | 27 |
-| urlhaus-filter | urlhaus-filter.txt.gz | MALICIOUS | https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-hosts.txt | CC0 1.0 / MIT; URLhaus data (abuse.ch) CC0 | 2,113 |
-| phishing-filter | phishing-filter.txt.gz | MALICIOUS | https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt | CC BY-SA 4.0 (sources: OpenPhish, PhishTank — free of charge; IPThreat CC BY-SA 4.0) | 17,022 |
+| urlhaus-filter | urlhaus-filter.txt.gzip | MALICIOUS | https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-hosts.txt | CC0 1.0 / MIT; URLhaus data (abuse.ch) CC0 | 2,113 |
+| phishing-filter | phishing-filter.txt.gzip | MALICIOUS | https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt | CC BY-SA 4.0 (sources: OpenPhish, PhishTank — free of charge; IPThreat CC BY-SA 4.0) | 17,022 |
 
 Total: ~297k unique domains, ~2.4 MB of assets.
 
