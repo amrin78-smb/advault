@@ -1,0 +1,29 @@
+# AdVault curated list: usage analytics (category ANALYTICS)
+# Licence: CC0 1.0. Blocking analytics can affect some app features; this category can be
+# disabled independently in Settings.
+google-analytics.com
+region1.analytics.google.com
+app-measurement.com
+api.mixpanel.com
+api-js.mixpanel.com
+decide.mixpanel.com
+api.amplitude.com
+api2.amplitude.com
+api.eu.amplitude.com
+api.segment.io
+heapanalytics.com
+hotjar.com
+hotjar.io
+rs.fullstory.com
+edge.fullstory.com
+clarity.ms
+mouseflow.com
+c.statcounter.com
+chartbeat.com
+chartbeat.net
+omtrdc.net
+mc.yandex.ru
+data.flurry.com
+cdp.cloud.unity3d.com
+api.uca.cloud.unity3d.com
+config.uca.cloud.unity3d.com

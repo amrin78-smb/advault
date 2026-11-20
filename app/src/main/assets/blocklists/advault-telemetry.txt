@@ -1,0 +1,30 @@
+# AdVault curated list: crash reporting & diagnostics telemetry (category TELEMETRY)
+# Licence: CC0 1.0. Blocking telemetry can affect some app features; this category can be
+# disabled independently in Settings. Firebase Installations / FCM are NOT listed (push breaks).
+crashlytics.com
+firebase-settings.crashlytics.com
+firebaselogging-pa.googleapis.com
+ingest.sentry.io
+ingest.us.sentry.io
+ingest.de.sentry.io
+sessions.bugsnag.com
+notify.bugsnag.com
+mobile-collector.newrelic.com
+bam.nr-data.net
+bam-cell.nr-data.net
+in.appcenter.ms
+browser-intake-datadoghq.com
+dc.services.visualstudio.com
+vortex.data.microsoft.com
+events.data.microsoft.com
+telemetry.microsoft.com
+pipe.aria.microsoft.com
+perf-events.cloud.unity3d.com
+incoming.telemetry.mozilla.org
+tracking.miui.com
+tracking.intl.miui.com
+data.mistat.xiaomi.com
+data.mistat.intl.xiaomi.com
+open.oneplus.net
+android.bugly.qq.com
+cc-api-data.adobe.io

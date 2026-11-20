@@ -1,0 +1,15 @@
+# AdVault curated list: mobile install attribution / ad measurement (category TRACKING)
+# Licence: CC0 1.0. Deep-link hosts (onelink.me, app.link, adj.st) are deliberately NOT listed
+# because blocking them breaks links in e-mails and messages.
+app.adjust.com
+s2s.adjust.com
+appsflyersdk.com
+t.appsflyer.com
+inapps.appsflyer.com
+launches.appsflyer.com
+register.appsflyer.com
+events.appsflyer.com
+control.kochava.com
+sdk-api-v1.singular.net
+stats.g.doubleclick.net
+analytics.tiktok.com
