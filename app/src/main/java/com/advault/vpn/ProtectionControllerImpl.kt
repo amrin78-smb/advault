@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.VpnService
+import android.os.Build
 import android.os.Process
 import android.util.Log
 import androidx.core.content.ContextCompat
@@ -94,7 +95,9 @@ class ProtectionControllerImpl @Inject constructor(
                 val caps = cm.getNetworkCapabilities(n) ?: continue
                 if (caps.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) {
                     // On Q+ the owner uid is only revealed to the VPN's owner; anything else is another app's VPN.
-                    if (caps.ownerUid != myUid || activeService == null) otherVpn = true
+                    // getOwnerUid() is API 30+; on Android 10 any VPN while our service is down is someone else's.
+                    val notOurs = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) caps.ownerUid != myUid else false
+                    if (notOurs || activeService == null) otherVpn = true
                 }
             }
             // We are excluded from our own VPN, so our default network is the physical one.

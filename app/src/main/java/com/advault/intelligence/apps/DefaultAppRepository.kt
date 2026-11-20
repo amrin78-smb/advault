@@ -150,7 +150,9 @@ class DefaultAppRepository @Inject constructor(
                 packageName = pkg,
                 label = r.label,
                 uid = r.identity.uid,
-                isSystem = r.identity.isSystem,
+                // Preinstalled apps with a launcher icon (Chrome, YouTube, Gmail...) are user-facing;
+                // "system" in the UI means background components only.
+                isSystem = r.identity.isSystem && !r.identity.launchable,
                 isGame = r.game.isGame,
                 icon = r.icon,
                 protection = ProtectionResolver.effectiveProtection(policyMap[pkg], behaviours[pkg]),

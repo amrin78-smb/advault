@@ -71,9 +71,10 @@ class DefaultRewardAssistantRepository @Inject constructor(
         val byId = inp.providers.associateBy { it.id }
         val obsByPkg = inp.observations.groupBy { it.packageName }
         val candidates = inp.records.filter { r ->
-            r.game.isGame ||
+            // Background system components (no launcher icon, e.g. the shell) are never shown as games.
+            (r.identity.launchable || !r.identity.isSystem) && (r.game.isGame ||
                 r.sdkProviderIds.any { byId[it]?.isAdvertising() == true } ||
-                obsByPkg[r.identity.packageName].orEmpty().any { byId[it.providerId]?.isAdvertising() == true }
+                obsByPkg[r.identity.packageName].orEmpty().any { byId[it.providerId]?.isAdvertising() == true })
         }
         return candidates.map { r ->
             val pkg = r.identity.packageName
