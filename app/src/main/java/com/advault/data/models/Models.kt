@@ -123,6 +123,8 @@ data class AdProvider(
     val sdkSignatures: List<String>,
     /** Whether the provider is known to verify rewarded completion server-side (SSV). */
     val supportsServerSideVerification: Boolean,
+    /** Manifest <meta-data> keys (exact or boundary-delimited prefix) that identify the SDK. */
+    val sdkMetaDataKeys: List<String> = emptyList(),
 )
 
 data class ProviderDomain(
@@ -131,6 +133,12 @@ data class ProviderDomain(
     val category: FilterCategory,
     val formats: List<AdFormat>,
     val note: String? = null,
+    /**
+     * False for shared infrastructure that also serves non-advertising functionality (e.g. Facebook
+     * Login on graph.facebook.com). Such domains are used ONLY for classification and must never be
+     * emitted as filter rules. Use AdProvider.blockableDomains() (intelligence.provider) for rules.
+     */
+    val blockable: Boolean = true,
 )
 
 data class ProviderDatabaseInfo(

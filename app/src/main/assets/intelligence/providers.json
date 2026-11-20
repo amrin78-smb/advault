@@ -1,0 +1,979 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": "2026.11.20.1",
+  "updatedAt": "2026-11-20",
+  "providers": [
+    {
+      "id": "google_admob",
+      "name": "Google AdMob (Google Mobile Ads SDK)",
+      "kind": "ad_network",
+      "description": "Google's mobile app advertising platform, delivered through the Google Mobile Ads SDK. Serves banner, interstitial, rewarded and rewarded interstitial ads, all through the same request endpoints.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": true,
+      "domains": [
+        {
+          "pattern": "googleads.g.doubleclick.net",
+          "category": "ADVERTISING",
+          "formats": [
+            "DISPLAY",
+            "INTERSTITIAL",
+            "REWARDED",
+            "REWARDED_INTERSTITIAL"
+          ],
+          "note": "Main ad request endpoint of the Google Mobile Ads SDK. Every format uses it, so DNS cannot tell a rewarded request from an interstitial or banner request."
+        },
+        {
+          "pattern": "googlesyndication.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Ad scripts and creative assets (e.g. pagead2, tpc)."
+        },
+        {
+          "pattern": "admob.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "AdMob service domain."
+        },
+        {
+          "pattern": "adservice.google.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Google advertising cookie and measurement service."
+        },
+        {
+          "pattern": "googleadservices.com",
+          "category": "TRACKING",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Google Ads conversion tracking."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.google.android.gms.ads.AdActivity",
+          "com.google.android.gms.ads.MobileAdsInitProvider",
+          "com.google.android.gms.ads.AdService",
+          "com.google.android.gms.ads.OutOfContextTestingActivity"
+        ],
+        "metaDataKeys": [
+          "com.google.android.gms.ads.APPLICATION_ID"
+        ]
+      }
+    },
+    {
+      "id": "google_ad_manager",
+      "name": "Google Ad Manager",
+      "kind": "ad_network",
+      "description": "Google's ad serving platform for larger publishers (formerly DoubleClick for Publishers). Uses the Google Mobile Ads SDK on Android, so apps using it usually also show the Google Mobile Ads SDK signature.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": true,
+      "domains": [
+        {
+          "pattern": "pubads.g.doubleclick.net",
+          "category": "ADVERTISING",
+          "formats": [
+            "DISPLAY",
+            "INTERSTITIAL",
+            "REWARDED",
+            "REWARDED_INTERSTITIAL"
+          ],
+          "note": "Ad Manager ad request endpoint; serves all formats."
+        },
+        {
+          "pattern": "securepubads.g.doubleclick.net",
+          "category": "ADVERTISING",
+          "formats": [
+            "DISPLAY",
+            "INTERSTITIAL",
+            "REWARDED",
+            "REWARDED_INTERSTITIAL"
+          ],
+          "note": "Ad Manager ad request endpoint (secure); serves all formats."
+        },
+        {
+          "pattern": "doubleclick.net",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "DoubleClick ad serving and measurement."
+        },
+        {
+          "pattern": "2mdn.net",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "DoubleClick creative (image/video) hosting."
+        },
+        {
+          "pattern": "imasdk.googleapis.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Interactive Media Ads SDK for in-stream video ads. Blocking can make some video players wait for an ad before playing content."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [],
+        "metaDataKeys": [
+          "com.google.android.gms.ads.AD_MANAGER_APP"
+        ]
+      }
+    },
+    {
+      "id": "unity_ads",
+      "name": "Unity Ads",
+      "kind": "ad_network",
+      "description": "Unity's mobile game advertising network. Serves banner, interstitial and rewarded ads; developers can verify rewarded completions with server-to-server callbacks.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": true,
+      "domains": [
+        {
+          "pattern": "unityads.unity3d.com",
+          "category": "GAME_ADS",
+          "formats": [
+            "DISPLAY",
+            "INTERSTITIAL",
+            "REWARDED"
+          ],
+          "note": "Unity Ads configuration, auction and ad serving (e.g. config.unityads, auction.unityads). Formats share these hosts."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.unity3d.ads.",
+          "com.unity3d.services.ads."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "applovin",
+      "name": "AppLovin (incl. AppLovin MAX)",
+      "kind": "ad_network",
+      "description": "AppLovin's ad network and its MAX mediation platform. Serves banner, interstitial and rewarded ads; MAX supports server-to-server rewarded callbacks.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": true,
+      "domains": [
+        {
+          "pattern": "applovin.com",
+          "category": "GAME_ADS",
+          "formats": [
+            "DISPLAY",
+            "INTERSTITIAL",
+            "REWARDED"
+          ],
+          "note": "SDK initialisation, ad requests, mediation and events (e.g. a., d., ms., rt.applovin.com)."
+        },
+        {
+          "pattern": "applvn.com",
+          "category": "GAME_ADS",
+          "formats": [
+            "DISPLAY",
+            "INTERSTITIAL",
+            "REWARDED"
+          ],
+          "note": "AppLovin ad creative delivery."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.applovin.adview.",
+          "com.applovin.sdk.",
+          "com.applovin.mediation.",
+          "com.applovin.impl."
+        ],
+        "metaDataKeys": [
+          "applovin.sdk.key"
+        ]
+      }
+    },
+    {
+      "id": "ironsource",
+      "name": "ironSource / Unity LevelPlay",
+      "kind": "mediation",
+      "description": "ironSource ad network and LevelPlay mediation (now part of Unity). Serves interstitial, rewarded and banner ads; supports server-to-server rewarded callbacks.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": true,
+      "domains": [
+        {
+          "pattern": "supersonicads.com",
+          "category": "GAME_ADS",
+          "formats": [
+            "INTERSTITIAL",
+            "REWARDED"
+          ],
+          "note": "ironSource ad initialisation, delivery and outcome reporting."
+        },
+        {
+          "pattern": "ironsrc.mobi",
+          "category": "GAME_ADS",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "ironSource/LevelPlay SDK endpoints."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.ironsource.sdk.",
+          "com.ironsource.mediationsdk.",
+          "com.ironsource.lifecycle.",
+          "com.ironsource.adapters."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "meta_audience_network",
+      "name": "Meta Audience Network",
+      "kind": "ad_network",
+      "description": "Meta's (Facebook) mobile ad network. Serves banner, interstitial and rewarded ads; supports server-side reward validation for rewarded video.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": true,
+      "domains": [
+        {
+          "pattern": "an.facebook.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "DISPLAY",
+            "INTERSTITIAL",
+            "REWARDED"
+          ],
+          "note": "Audience Network ad delivery."
+        },
+        {
+          "pattern": "graph.facebook.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Graph API endpoint shared with Facebook Login, sharing and many non-ad features. Shared infrastructure that also serves non-advertising features. Used only to classify traffic; never blocked by the provider database.",
+          "blockable": false
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.facebook.ads."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "liftoff_vungle",
+      "name": "Liftoff Monetize (Vungle)",
+      "kind": "ad_network",
+      "description": "Liftoff's in-app video ad network (formerly Vungle). Serves interstitial, rewarded and banner ads.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": true,
+      "domains": [
+        {
+          "pattern": "vungle.com",
+          "category": "GAME_ADS",
+          "formats": [
+            "DISPLAY",
+            "INTERSTITIAL",
+            "REWARDED"
+          ],
+          "note": "SDK API and ad delivery (e.g. api, ads.api, cdn-lb)."
+        },
+        {
+          "pattern": "liftoff.io",
+          "category": "TRACKING",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Liftoff measurement and impression tracking."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.vungle."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "chartboost",
+      "name": "Chartboost",
+      "kind": "ad_network",
+      "description": "Mobile game ad network serving interstitial, rewarded and banner ads.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "chartboost.com",
+          "category": "GAME_ADS",
+          "formats": [
+            "DISPLAY",
+            "INTERSTITIAL",
+            "REWARDED"
+          ],
+          "note": "SDK API and ad delivery (e.g. live, da)."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.chartboost.sdk."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "mintegral",
+      "name": "Mintegral",
+      "kind": "ad_network",
+      "description": "Mobile ad network commonly used by games, serving interstitial, rewarded, native and banner ads.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "rayjump.com",
+          "category": "GAME_ADS",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Mintegral SDK configuration, ad requests and creative CDN."
+        },
+        {
+          "pattern": "mintegral.net",
+          "category": "GAME_ADS",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Mintegral SDK endpoints."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.mbridge.msdk.",
+          "com.mintegral.msdk."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "pangle",
+      "name": "Pangle",
+      "kind": "ad_network",
+      "description": "ByteDance's mobile ad network outside mainland China.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "pangle.io",
+          "category": "GAME_ADS",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Pangle SDK endpoints."
+        },
+        {
+          "pattern": "pangleglobal.com",
+          "category": "GAME_ADS",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Pangle SDK endpoints."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.bytedance.sdk.openadsdk."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "inmobi",
+      "name": "InMobi",
+      "kind": "ad_network",
+      "description": "Mobile advertising platform serving banner, interstitial, native and rewarded ads.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "inmobi.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "SDK and ad delivery (e.g. api.w, i.w, sdkm.w)."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.inmobi.ads.",
+          "com.inmobi.sdk.",
+          "com.inmobi.commons."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "digital_turbine",
+      "name": "Digital Turbine (Fyber / AdColony)",
+      "kind": "ad_network",
+      "description": "Digital Turbine's app monetisation stack, including the former Fyber (Inneractive) marketplace and AdColony. Offerwall and AdColony rewarded ads support server-side reward callbacks.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": true,
+      "domains": [
+        {
+          "pattern": "inner-active.mobi",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Fyber Marketplace (Inneractive) ad delivery."
+        },
+        {
+          "pattern": "fyber.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Fyber SDK and offerwall endpoints."
+        },
+        {
+          "pattern": "adcolony.com",
+          "category": "GAME_ADS",
+          "formats": [
+            "INTERSTITIAL",
+            "REWARDED"
+          ],
+          "note": "AdColony ad delivery."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.fyber.",
+          "com.inneractive.",
+          "com.adcolony.sdk."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "moloco",
+      "name": "Moloco",
+      "kind": "ad_network",
+      "description": "Programmatic mobile advertising platform; its SDK is used mostly through mediation.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "adsmoloco.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Moloco SDK ad endpoints."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.moloco.sdk."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "amazon_aps",
+      "name": "Amazon Publisher Services",
+      "kind": "ad_network",
+      "description": "Amazon's header-bidding service for apps (APS / Transparent Ad Marketplace).",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "amazon-adsystem.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "DISPLAY",
+            "INTERSTITIAL"
+          ],
+          "note": "APS bid requests and ad delivery (e.g. aax, mads, c)."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.amazon.device.ads.",
+          "com.amazon.aps."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "yandex_ads",
+      "name": "Yandex Ads",
+      "kind": "ad_network",
+      "description": "Yandex's mobile advertising network and ad exchange.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "an.yandex.ru",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Yandex Advertising Network."
+        },
+        {
+          "pattern": "yandexadexchange.net",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Yandex mobile ad exchange."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.yandex.mobile.ads."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "appodeal",
+      "name": "Appodeal",
+      "kind": "mediation",
+      "description": "Ad mediation platform that loads ads from several networks.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "appodeal.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Appodeal SDK and mediation endpoints."
+        },
+        {
+          "pattern": "appodealx.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Appodeal exchange endpoints."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.appodeal.ads."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "startio",
+      "name": "Start.io (StartApp)",
+      "kind": "ad_network",
+      "description": "Mobile ad network formerly known as StartApp.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "startappservice.com",
+          "category": "ADVERTISING",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Start.io SDK and ad delivery."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.startapp.sdk.",
+          "com.startapp.android.publish."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "tapjoy",
+      "name": "Tapjoy",
+      "kind": "ad_network",
+      "description": "Rewarded advertising and offerwall network (now part of Unity). Offerwall rewards are credited by the developer's servers.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": true,
+      "domains": [
+        {
+          "pattern": "tapjoy.com",
+          "category": "GAME_ADS",
+          "formats": [
+            "REWARDED"
+          ],
+          "note": "Tapjoy SDK and offerwall."
+        },
+        {
+          "pattern": "tapjoyads.com",
+          "category": "GAME_ADS",
+          "formats": [
+            "REWARDED"
+          ],
+          "note": "Tapjoy ad delivery."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.tapjoy."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "appsflyer",
+      "name": "AppsFlyer",
+      "kind": "attribution",
+      "description": "Mobile install attribution and marketing measurement. Blocking may affect some referral or deep-link features.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "appsflyer.com",
+          "category": "TRACKING",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Attribution and event reporting."
+        },
+        {
+          "pattern": "appsflyersdk.com",
+          "category": "TRACKING",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Attribution and event reporting (newer SDK hosts)."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.appsflyer."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "adjust",
+      "name": "Adjust",
+      "kind": "attribution",
+      "description": "Mobile install attribution and marketing measurement.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "adjust.com",
+          "category": "TRACKING",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Attribution and event reporting (e.g. app.adjust.com)."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.adjust.sdk."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "branch",
+      "name": "Branch",
+      "kind": "attribution",
+      "description": "Deep linking and attribution. Branch link domains are also used to open shared links, so they are classified but not blocked.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "branch.io",
+          "category": "TRACKING",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Branch API (e.g. api2.branch.io). Blocking may stop some app links from opening the right content."
+        },
+        {
+          "pattern": "app.link",
+          "category": "TRACKING",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Branch-hosted app links that users open. Shared infrastructure that also serves non-advertising features. Used only to classify traffic; never blocked by the provider database.",
+          "blockable": false
+        },
+        {
+          "pattern": "bnc.lt",
+          "category": "TRACKING",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Branch short links that users open. Shared infrastructure that also serves non-advertising features. Used only to classify traffic; never blocked by the provider database.",
+          "blockable": false
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "io.branch.referral."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "kochava",
+      "name": "Kochava",
+      "kind": "attribution",
+      "description": "Mobile attribution and measurement.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "kochava.com",
+          "category": "TRACKING",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Attribution and event reporting."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.kochava."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "singular",
+      "name": "Singular",
+      "kind": "attribution",
+      "description": "Marketing attribution and analytics.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "singular.net",
+          "category": "TRACKING",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Attribution and event reporting (e.g. sdk-api-v1.singular.net)."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.singular.sdk."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "google_analytics_firebase",
+      "name": "Google Analytics for Firebase",
+      "kind": "analytics",
+      "description": "Google's app analytics SDK (Firebase Analytics / Google Analytics for apps).",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "app-measurement.com",
+          "category": "ANALYTICS",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Firebase / Google Analytics event upload."
+        },
+        {
+          "pattern": "google-analytics.com",
+          "category": "ANALYTICS",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Google Analytics collection."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.google.android.gms.measurement."
+        ],
+        "metaDataKeys": [
+          "com.google.firebase.components:com.google.firebase.analytics"
+        ]
+      }
+    },
+    {
+      "id": "gameanalytics",
+      "name": "GameAnalytics",
+      "kind": "analytics",
+      "description": "Analytics SDK designed for games.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "gameanalytics.com",
+          "category": "ANALYTICS",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Event collection (e.g. api.gameanalytics.com)."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.gameanalytics.sdk."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "flurry",
+      "name": "Flurry Analytics",
+      "kind": "analytics",
+      "description": "Mobile app analytics.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "flurry.com",
+          "category": "ANALYTICS",
+          "formats": [
+            "TRACKING"
+          ],
+          "note": "Event collection (e.g. data.flurry.com)."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.flurry.android."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "firebase_crashlytics",
+      "name": "Firebase Crashlytics",
+      "kind": "telemetry",
+      "description": "Crash reporting. Blocking it stops crash reports reaching the developer; the app itself keeps working.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "crashlytics.com",
+          "category": "TELEMETRY",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Crashlytics settings and report upload."
+        },
+        {
+          "pattern": "crashlyticsreports-pa.googleapis.com",
+          "category": "TELEMETRY",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Crashlytics report upload."
+        },
+        {
+          "pattern": "firebaselogging-pa.googleapis.com",
+          "category": "TELEMETRY",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Firebase SDK event/log transport used by several Firebase SDKs."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.google.firebase.crashlytics."
+        ],
+        "metaDataKeys": [
+          "com.google.firebase.components:com.google.firebase.crashlytics"
+        ]
+      }
+    },
+    {
+      "id": "sentry",
+      "name": "Sentry",
+      "kind": "telemetry",
+      "description": "Error and crash reporting service.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "ingest.sentry.io",
+          "category": "TELEMETRY",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Event ingestion (e.g. oNNN.ingest.sentry.io)."
+        },
+        {
+          "pattern": "ingest.us.sentry.io",
+          "category": "TELEMETRY",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Event ingestion (US region)."
+        },
+        {
+          "pattern": "ingest.de.sentry.io",
+          "category": "TELEMETRY",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Event ingestion (EU region)."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "io.sentry."
+        ],
+        "metaDataKeys": []
+      }
+    },
+    {
+      "id": "bugsnag",
+      "name": "Bugsnag",
+      "kind": "telemetry",
+      "description": "Error and crash reporting service.",
+      "lastUpdated": "2026-11-20",
+      "supportsServerSideVerification": false,
+      "domains": [
+        {
+          "pattern": "notify.bugsnag.com",
+          "category": "TELEMETRY",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Error report upload."
+        },
+        {
+          "pattern": "sessions.bugsnag.com",
+          "category": "TELEMETRY",
+          "formats": [
+            "UNKNOWN"
+          ],
+          "note": "Session tracking upload."
+        }
+      ],
+      "sdkSignatures": {
+        "componentPrefixes": [
+          "com.bugsnag.android."
+        ],
+        "metaDataKeys": []
+      }
+    }
+  ]
+}

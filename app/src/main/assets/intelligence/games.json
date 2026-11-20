@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "dataVersion": "2026.11.20.1",
+  "updatedAt": "2026-11-20",
+  "comment": "Game compatibility data for the Reward Assistant. Intentionally empty: entries must only be added when each claim has been verified (e.g. from the developer's own documentation or by testing a specific version). Users can add entries in filesDir/intelligence/games.json using the same schema. Entry fields: packageName, title, notes, rewardRequiresVerifiedAd (true/false/null if unknown), alternatives[], knownIssuesWhenBlocking[], lastVerified (YYYY-MM-DD or null), source (optional).",
+  "games": []
+}
