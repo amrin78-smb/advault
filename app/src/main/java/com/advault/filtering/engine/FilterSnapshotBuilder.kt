@@ -62,6 +62,8 @@ class FilterSnapshotBuilder(expectedDomains: Int = 1024) {
     fun addProviders(providers: List<AdProvider>, sourceId: String): Int {
         var n = 0
         for (p in providers) for (d in p.domains) {
+            // Shared-infrastructure domains (e.g. graph.facebook.com = Facebook Login) are classification-only.
+            if (!d.blockable) continue
             val rule = normalisePattern(d.pattern) ?: continue
             lists.addRule(rule, source(sourceId, d.category))
             n++
